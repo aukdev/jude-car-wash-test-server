@@ -3,7 +3,14 @@ import DB from "../../db/db.mjs";
 // get all
 export const getAll = async () => {
   try {
-    const data = await DB.serviceType.findMany({ include: { Services: true } });
+    const data = await DB.serviceType.findMany({
+      include: {
+        Services: {
+          where: { deletedAt: null },
+        },
+      },
+      where: { deletedAt: null },
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -16,7 +23,11 @@ export const getTypeById = async (id) => {
   try {
     const data = await DB.serviceType.findUnique({
       where: { id: Number(id) },
-      include: { Services: true },
+      include: {
+        Services: {
+          where: { deletedAt: null },
+        },
+      },
     });
     return data;
   } catch (error) {

@@ -146,7 +146,7 @@ export const getById = async (id) => {
     });
 
     if (data.invoiceId === null) data.invoiceId = lastInvoice.invoiceId + 1;
-    console.log(lastInvoice.invoiceId);
+    // console.log(lastInvoice.invoiceId);
 
     const { Booking, Client, ...rest } = data;
     return {

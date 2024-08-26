@@ -186,7 +186,7 @@ invoiceRouter.post("/starting-inovice", async (c, w) => {
 
 // update main-pdf
 invoiceRouter.put("/main-pdf", async (c, w) => {
-  const data = await mainPDFUpdate(c.params.id, c.body);
+  const data = await mainPDFUpdate(c.body);
   if (data === "error") {
     w.status(HTTPSTATUS.SERVER_ERROR).json(
       clientResponse(

@@ -17,6 +17,7 @@ model ServiceType {
   id        Int       @id @default(autoincrement())
   Type      String    @db.VarChar(50)
   Services  Service[]
+  deletedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -30,6 +31,7 @@ model Service {
   ServiceTypeId Int
   Booking       Booking[]
   MultiBooking  MultiBooking[]
+  deletedAt     DateTime?
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 }
@@ -134,6 +136,7 @@ model Team {
   Members   Client[]
   Booking   Booking[]
   Leader    Int?
+  deletedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

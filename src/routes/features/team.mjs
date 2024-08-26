@@ -4,8 +4,11 @@ import { clientResponse, RESPONSE } from "../../dto/response.mjs";
 import {
   addMembers,
   createTeam,
+  deleteMembers,
+  deleteTeam,
   getAllTeams,
   getTeam,
+  update,
 } from "../../controller/features/team.mjs";
 
 const teamRouter = Router();
@@ -86,23 +89,61 @@ teamRouter.post("/add-new-members/:id", async (c, w) => {
   );
 });
 
+// add new members
+teamRouter.post("/delete-members/:id", async (c, w) => {
+  const data = await deleteMembers(c.params.id, c.body.Members);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
+
 // update
-// teamRouter.put("/:id", async (c, w) => {
-//   const data = await update(c.params.id, c.body);
-//   if (data === "error") {
-//     w.status(HTTPSTATUS.SERVER_ERROR).json(
-//       clientResponse(
-//         RESPONSE.ERROR,
-//         HTTPSTATUS.SERVER_ERROR,
-//         undefined,
-//         HTTPSTATUS_MSG.SERVER_ERROR
-//       )
-//     );
-//     return;
-//   }
-//   w.status(HTTPSTATUS.OK).json(
-//     clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
-//   );
-// });
+teamRouter.put("/:id", async (c, w) => {
+  const data = await update(c.params.id, c.body);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
+
+// delete
+teamRouter.delete("/:id", async (c, w) => {
+  const data = await deleteTeam(c.params.id);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
 
 export default teamRouter;
