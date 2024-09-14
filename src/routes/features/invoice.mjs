@@ -322,6 +322,29 @@ invoiceRouter.post("/payment-slip", (c, w) => {
   });
 });
 
+// payment slip
+invoiceRouter.post("/invoice-pdf-file", (c, w) => {
+  upload.single("invoice-pdf-file")(c, w, (err) => {
+    if (err)
+      w.status(HTTPSTATUS.SERVER_ERROR).json(
+        clientResponse(
+          RESPONSE.ERROR,
+          HTTPSTATUS.SERVER_ERROR,
+          undefined,
+          HTTPSTATUS_MSG.SERVER_ERROR
+        )
+      );
+    w.status(HTTPSTATUS.CREATED).json(
+      clientResponse(
+        RESPONSE.SUCCESS,
+        HTTPSTATUS.CREATED,
+        { file: `/data/${c.file.filename}` },
+        undefined
+      )
+    );
+  });
+});
+
 // vehical issure
 invoiceRouter.post("/vehical-issure", (c, w) => {
   upload.single("vehical-issure")(c, w, (err) => {

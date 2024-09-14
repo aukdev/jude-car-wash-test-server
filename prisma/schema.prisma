@@ -130,6 +130,59 @@ model MainPDF {
   updatedAt DateTime @updatedAt
 }
 
+model Product {
+  id        Int      @id @default(autoincrement())
+  image     String
+  title     String
+  price     Decimal
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  image     String
+  title     String
+  price     Decimal
+  address   String
+  quantity  Int
+  client    Client      @relation(fields: [clientId], references: [id])
+  clientId  Int
+  status    OrderStatus @default(pendding)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model Advance {
+  id        Int           @id @default(autoincrement())
+  amount    Decimal
+  type      String
+  months    Int
+  client    Client        @relation(fields: [clientId], references: [id])
+  clientId  Int
+  status    AdvanceStatus @default(pendding)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Complaint {
+  id        Int           @id @default(autoincrement())
+  message   String        @db.VarChar(600)
+  image     String
+  client    Client        @relation(fields: [clientId], references: [id])
+  clientId  Int
+  status    AdvanceStatus @default(pendding)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Ads {
+  id        Int      @id @default(autoincrement())
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Team {
   id        Int       @id @default(autoincrement())
   TeamName  String    @db.VarChar(100)
@@ -155,6 +208,9 @@ model Client {
   Booking      Booking[]
   MultiBooking MultiBooking[]
   Invoices     Invoice[]
+  Order        Order[]
+  Advance      Advance[]
+  Complaints   Complaint[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }
@@ -170,4 +226,18 @@ enum UserPosition {
   Team_Member
   Team_Leader
   Admin
+}
+
+enum OrderStatus {
+  pendding
+  cancel
+  accept
+  completed
+}
+
+enum AdvanceStatus {
+  pendding
+  rejected
+  accept
+  completed
 }

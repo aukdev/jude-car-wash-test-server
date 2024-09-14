@@ -63,6 +63,22 @@ export const updateType = async (id, data) => {
   }
 };
 
+// delete service type
+export const deleteType = async (id) => {
+  try {
+    const updateData = await DB.serviceType.update({
+      where: { id: Number(id) },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
+    return updateData;
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
 // create service
 export const createService = async (data) => {
   try {
@@ -80,6 +96,22 @@ export const updateService = async (id, data) => {
     const updateData = await DB.service.update({
       where: { id: Number(id) },
       data,
+    });
+    return updateData;
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
+// delete service
+export const deleteService = async (id) => {
+  try {
+    const updateData = await DB.service.update({
+      where: { id: Number(id) },
+      data: {
+        deletedAt: new Date(),
+      },
     });
     return updateData;
   } catch (error) {

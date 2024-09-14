@@ -126,6 +126,18 @@ export const checkUsername = async (username) => {
   }
 };
 
+// check phone
+export const checkPhone = async (phone) => {
+  try {
+    const count = await DB.client.count({ where: { Phone: phone } });
+    if (count) return "data";
+    else return "ok";
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
 // update
 export const update = async (id, data) => {
   try {
