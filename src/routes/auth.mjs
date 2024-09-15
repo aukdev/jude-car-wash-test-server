@@ -9,7 +9,7 @@ const authRouter = Router();
 authRouter.post("/login", async (c, w) => {
   const data = await login(c.body.username, c.body.password);
   if (data === "error") {
-    w.status(HTTPSTATUS_MSG.SERVER_ERROR).json(
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
       clientResponse(
         RESPONSE.ERROR,
         HTTPSTATUS.SERVER_ERROR,

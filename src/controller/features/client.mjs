@@ -77,6 +77,7 @@ export const getById = async (id) => {
     const data = await DB.client.findUnique({
       where: { id: Number(id) },
       select: {
+        id: true,
         Name: true,
         Phone: true,
         Email: true,

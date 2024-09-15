@@ -16,14 +16,7 @@ export const __filename = import.meta.filename;
 
 const httpServer = server();
 
-httpServer.use(
-  cors({
-    origin: "https://idetailer.pro", // Allow only your React client
-    methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
-    credentials: true, // Enable credentials if needed
-    optionsSuccessStatus: 200, // For legacy browsers support
-  })
-);
+httpServer.use(cors({}));
 httpServer.use(server.json());
 httpServer.use("/api/v1/", router);
 httpServer.use("/data/", server.static(join(__dirname, "src", "public")));

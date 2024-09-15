@@ -114,18 +114,6 @@ export const getAllByDate = async (date, page, size) => {
 // get invoice by id
 export const getById = async (id) => {
   try {
-    // get last invoice Id
-    const lastInvoice = await DB.invoice.findFirst({
-      orderBy: { invoiceId: "desc" },
-      select: { invoiceId: true },
-      where: {
-        PaymentStatus: "success",
-        invoiceId: {
-          not: null,
-        },
-      },
-    });
-
     const data = await DB.invoice.findUnique({
       where: { id: Number(id) },
       include: {
@@ -145,7 +133,21 @@ export const getById = async (id) => {
       },
     });
 
-    if (data.invoiceId === null) data.invoiceId = lastInvoice.invoiceId + 1;
+    if (data.invoiceId === null) {
+      // get last invoice Id
+      const lastInvoice = await DB.invoice.findFirst({
+        orderBy: { id: "desc" },
+        select: { invoiceId: true },
+        where: {
+          PaymentStatus: "success",
+          invoiceId: {
+            not: null,
+          },
+        },
+      });
+
+      data.invoiceId = lastInvoice.invoiceId + 1;
+    }
     // console.log(lastInvoice.invoiceId);
 
     const { Booking, Client, ...rest } = data;
@@ -302,21 +304,20 @@ export const completeJob = async (id) => {
 // invoice generate
 export const invoiceGen = async (id) => {
   try {
-    // get last invoice Id
-    const lastInvoice = await DB.invoice.findFirst({
-      orderBy: { invoiceId: "desc" },
-      select: { invoiceId: true, id: true },
-      where: {
-        PaymentStatus: "success",
-        invoiceId: {
-          not: null,
-        },
-      },
-    });
-
     const d = await DB.invoice.findUnique({ where: { id: Number(id) } });
 
     if (d.invoiceId === null) {
+      // get last invoice Id
+      const lastInvoice = await DB.invoice.findFirst({
+        orderBy: { id: "desc" },
+        select: { invoiceId: true, id: true },
+        where: {
+          PaymentStatus: "success",
+          invoiceId: {
+            not: null,
+          },
+        },
+      });
       // update invoice
       await DB.invoice.update({
         where: { id: Number(id) },

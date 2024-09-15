@@ -171,6 +171,22 @@ export const getAllByDate = async (date, page, size) => {
   }
 };
 
+// get for customer
+export const getForCustomer = async (clientId) => {
+  try {
+    const data = await DB.booking.findMany({
+      where: { ClientId: Number(clientId) },
+      skip: 0,
+      take: 20,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
 // get by id
 export const getById = async (id) => {
   try {

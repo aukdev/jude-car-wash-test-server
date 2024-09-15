@@ -12,6 +12,7 @@ import {
   availableTimesTeam,
   availableTimesCustomers,
   getByMultiBookingId,
+  getForCustomer,
 } from "../../controller/features/booking.mjs";
 
 const bookingRouter = Router();
@@ -60,6 +61,25 @@ bookingRouter.get("/get-jobs", async (c, w) => {
 // get all by date
 bookingRouter.get("/get-by-date", async (c, w) => {
   const data = await getAllByDate(c.query.date, c.query.page, c.query.size);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
+
+// get by customer
+bookingRouter.get("/get-by-customer/:clientId", async (c, w) => {
+  const data = await getForCustomer(c.params.clientId);
   if (data === "error") {
     w.status(HTTPSTATUS.SERVER_ERROR).json(
       clientResponse(
