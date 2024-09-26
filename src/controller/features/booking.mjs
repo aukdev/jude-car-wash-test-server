@@ -178,6 +178,7 @@ export const getForCustomer = async (clientId) => {
       where: { ClientId: Number(clientId) },
       skip: 0,
       take: 20,
+      orderBy: { id: "desc" },
     });
 
     return data;

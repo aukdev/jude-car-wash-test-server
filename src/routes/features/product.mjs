@@ -84,7 +84,7 @@ productRoute.post("/product-image", (c, w) => {
       clientResponse(
         RESPONSE.SUCCESS,
         HTTPSTATUS.CREATED,
-        { file: `/data/${c.file.filename}` },
+        { file: `/data/${c?.file?.filename}` },
         undefined
       )
     );

@@ -12,6 +12,7 @@ import advanceRoute from "./advance.mjs";
 import bookingRouter from "./booking.mjs";
 import complaintRoute from "./complaint.mjs";
 import multiBookingRouter from "./multi-booking.mjs";
+import reportRouter from "./report.mjs";
 
 const featuresRouter = Router();
 
@@ -24,6 +25,7 @@ featuresRouter.use("/service", serviceRouter);
 featuresRouter.use("/booking", bookingRouter);
 featuresRouter.use("/multi-booking", multiBookingRouter);
 featuresRouter.use("/invoice", invoiceRouter);
+featuresRouter.use("/report", reportRouter);
 featuresRouter.use("/client", clientRouter);
 featuresRouter.use("/team", teamRouter);
 featuresRouter.use("/product", productRouter);
