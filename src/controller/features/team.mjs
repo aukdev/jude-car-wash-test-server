@@ -50,7 +50,7 @@ export const update = async (id, data) => {
   }
 };
 
-// update
+// delete
 export const deleteTeam = async (id) => {
   try {
     await DB.team.update({

@@ -5,6 +5,7 @@ import {
   checkPhone,
   checkUsername,
   create,
+  deleteClient,
   getAllCustomers,
   getAllStaff,
   getById,
@@ -184,6 +185,25 @@ clientRouter.post("/check-phone", async (c, w) => {
 // update
 clientRouter.put("/:id", async (c, w) => {
   const data = await update(c.params.id, c.body);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
+
+// delete
+clientRouter.delete("/:id", async (c, w) => {
+  const data = await deleteClient(c.params.id);
   if (data === "error") {
     w.status(HTTPSTATUS.SERVER_ERROR).json(
       clientResponse(

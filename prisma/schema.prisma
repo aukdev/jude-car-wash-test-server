@@ -105,6 +105,7 @@ model Invoice {
   ServicePrice      Decimal?
   InvoiceAmount     Decimal?
   Discount          Int?
+  DiscountAmount    Decimal?
   PaymentMethod     String?       @db.VarChar(50)
   PaymentSlip       String?
   PaymentStatus     String        @default("pendding") @db.VarChar(10)
@@ -211,6 +212,7 @@ model Client {
   Order        Order[]
   Advance      Advance[]
   Complaints   Complaint[]
+  deletedAt    DateTime?
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }

@@ -20,12 +20,14 @@ export const getAllCustomers = async (page, size) => {
       },
       where: {
         Role: UserRole.User,
+        deletedAt: null,
       },
     });
 
     const count = await DB.client.count({
       where: {
         Role: UserRole.User,
+        deletedAt: null,
       },
     });
 
@@ -55,12 +57,14 @@ export const getAllStaff = async (page, size) => {
       },
       where: {
         Role: UserRole.Team,
+        deletedAt: null,
       },
     });
 
     const count = await DB.client.count({
       where: {
         Role: UserRole.Team,
+        deletedAt: null,
       },
     });
 
@@ -147,6 +151,22 @@ export const update = async (id, data) => {
       data,
     });
     return `${updateData.id} client has been updated`;
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
+// delete
+export const deleteClient = async (id) => {
+  try {
+    await DB.client.update({
+      where: { id: Number(id) },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
+    return "deleted data";
   } catch (error) {
     console.log(error);
     return "error";

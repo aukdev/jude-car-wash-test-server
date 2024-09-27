@@ -3,7 +3,7 @@ import DB from "../db/db.mjs";
 export const login = async (username, password) => {
   try {
     const user = await DB.client.findFirst({
-      where: { Username: username },
+      where: { Username: username, deletedAt: null },
       include: { Team: { where: { deletedAt: null } } },
     });
     if (user === null) {
