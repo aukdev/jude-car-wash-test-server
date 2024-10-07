@@ -11,6 +11,42 @@ export const getAllTeams = async () => {
   }
 };
 
+// get all teams by date with bookings
+export const getAllTeamsByDateWithBookings = async (date) => {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  try {
+    const data = await DB.team.findMany({
+      where: { deletedAt: null },
+      include: {
+        Booking: {
+          where: {
+            Date: {
+              gte: startOfDay,
+              lte: endOfDay,
+            },
+            BookingStatus: {
+              not: "cancel",
+            },
+            StartTime: {
+              not: null,
+            },
+          },
+        },
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+};
+
 // get team
 export const getTeam = async (id) => {
   try {

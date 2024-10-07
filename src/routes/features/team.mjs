@@ -7,6 +7,7 @@ import {
   deleteMembers,
   deleteTeam,
   getAllTeams,
+  getAllTeamsByDateWithBookings,
   getTeam,
   update,
 } from "../../controller/features/team.mjs";
@@ -35,6 +36,25 @@ teamRouter.get("/get-all-team", async (_, w) => {
 // get team
 teamRouter.get("/get-team/:id", async (c, w) => {
   const data = await getTeam(c.params.id);
+  if (data === "error") {
+    w.status(HTTPSTATUS.SERVER_ERROR).json(
+      clientResponse(
+        RESPONSE.ERROR,
+        HTTPSTATUS.SERVER_ERROR,
+        undefined,
+        HTTPSTATUS_MSG.SERVER_ERROR
+      )
+    );
+    return;
+  }
+  w.status(HTTPSTATUS.OK).json(
+    clientResponse(RESPONSE.SUCCESS, HTTPSTATUS.OK, data, undefined)
+  );
+});
+
+// get all teams by date with bookings
+teamRouter.get("/get-teams-by-date-with-bookings", async (c, w) => {
+  const data = await getAllTeamsByDateWithBookings(c.query.date);
   if (data === "error") {
     w.status(HTTPSTATUS.SERVER_ERROR).json(
       clientResponse(
