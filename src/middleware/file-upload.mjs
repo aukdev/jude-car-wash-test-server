@@ -7,7 +7,9 @@ const __dirname = import.meta.dirname;
 const storage = diskStorage({
   destination: join(__dirname, "..", "public"),
   filename: (_, f, cb) => {
-    // console.log(file.originalname);
+    console.log(f.originalname);
+    console.log(f.mimetype);
+    console.log(`${Date.now()}_${f.fieldname}${extname(f.originalname)}`);
     cb(null, `${Date.now()}_${f.fieldname}${extname(f.originalname)}`);
   },
 });
