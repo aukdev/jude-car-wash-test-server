@@ -18,6 +18,7 @@ const httpServer = server();
 
 httpServer.use(cors({}));
 httpServer.use(server.json());
+httpServer.use(server.urlencoded({ limit: "10mb", extended: true }));
 httpServer.use("/api/v1/", router);
 httpServer.use("/data/", server.static(join(__dirname, "src", "public")));
 httpServer.use("/*", (_, w) =>
