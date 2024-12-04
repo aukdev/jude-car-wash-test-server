@@ -136,7 +136,7 @@ export const getById = async (id) => {
     if (data.invoiceId === null) {
       // get last invoice Id
       const lastInvoice = await DB.invoice.findFirst({
-        orderBy: { id: "desc" },
+        orderBy: { invoiceId: "desc" },
         select: { invoiceId: true },
         where: {
           PaymentStatus: "success",
@@ -309,7 +309,7 @@ export const invoiceGen = async (id) => {
     if (d.invoiceId === null) {
       // get last invoice Id
       const lastInvoice = await DB.invoice.findFirst({
-        orderBy: { id: "desc" },
+        orderBy: { invoiceId: "desc" },
         select: { invoiceId: true, id: true },
         where: {
           PaymentStatus: "success",
