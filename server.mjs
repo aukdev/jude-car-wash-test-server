@@ -34,4 +34,16 @@ httpServer.use("/*", (_, w) =>
     )
 );
 
+app.use((err, _, w) => {
+  // Log the error stack for debugging
+  console.error(err.stack);
+
+  // Set the response status code and send a JSON response
+  w.status(err.status || 500).json({
+    error: {
+      message: err.message || "Internal Server Error",
+    },
+  });
+});
+
 httpServer.listen(PORT, () => log(`server running on port ${PORT}`));
