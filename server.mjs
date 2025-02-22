@@ -34,7 +34,7 @@ httpServer.use("/*", (_, w) =>
     )
 );
 
-app.use((err, _, w) => {
+httpServer.use((err, _, w) => {
   // Log the error stack for debugging
   console.error(err.stack);
 
