@@ -5,4 +5,9 @@ services:
     build: .
     ports:
       - "4000:4000"
+    volumes:
+      - imgsrc:/app/src/public
     command: sh -c "npx prisma generate && npm start"
+
+volumes:
+  imgsrc:
