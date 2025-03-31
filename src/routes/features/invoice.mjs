@@ -279,7 +279,7 @@ invoiceRouter.post("/invoice-pdf", async (c, w) => {
 // client signature
 invoiceRouter.post("/signature", (c, w) => {
   upload.single("signature")(c, w, (err) => {
-    if (err)
+    if (err) {
       w.status(HTTPSTATUS.SERVER_ERROR).json(
         clientResponse(
           RESPONSE.ERROR,
@@ -288,11 +288,13 @@ invoiceRouter.post("/signature", (c, w) => {
           HTTPSTATUS_MSG.SERVER_ERROR
         )
       );
+      return;
+    }
     w.status(HTTPSTATUS.CREATED).json(
       clientResponse(
         RESPONSE.SUCCESS,
         HTTPSTATUS.CREATED,
-        { file: `/data/${c.file.filename}` },
+        { file: `/data/${c?.file?.filename}` },
         undefined
       )
     );
@@ -302,7 +304,7 @@ invoiceRouter.post("/signature", (c, w) => {
 // payment slip
 invoiceRouter.post("/payment-slip", (c, w) => {
   upload.single("payment-slip")(c, w, (err) => {
-    if (err)
+    if (err) {
       w.status(HTTPSTATUS.SERVER_ERROR).json(
         clientResponse(
           RESPONSE.ERROR,
@@ -311,11 +313,13 @@ invoiceRouter.post("/payment-slip", (c, w) => {
           HTTPSTATUS_MSG.SERVER_ERROR
         )
       );
+      return;
+    }
     w.status(HTTPSTATUS.CREATED).json(
       clientResponse(
         RESPONSE.SUCCESS,
         HTTPSTATUS.CREATED,
-        { file: `/data/${c.file.filename}` },
+        { file: `/data/${c?.file?.filename}` },
         undefined
       )
     );
@@ -325,7 +329,7 @@ invoiceRouter.post("/payment-slip", (c, w) => {
 // payment slip
 invoiceRouter.post("/invoice-pdf-file", (c, w) => {
   upload.single("invoice-pdf-file")(c, w, (err) => {
-    if (err)
+    if (err) {
       w.status(HTTPSTATUS.SERVER_ERROR).json(
         clientResponse(
           RESPONSE.ERROR,
@@ -334,11 +338,13 @@ invoiceRouter.post("/invoice-pdf-file", (c, w) => {
           HTTPSTATUS_MSG.SERVER_ERROR
         )
       );
+      return;
+    }
     w.status(HTTPSTATUS.CREATED).json(
       clientResponse(
         RESPONSE.SUCCESS,
         HTTPSTATUS.CREATED,
-        { file: `/data/${c.file.filename}` },
+        { file: `/data/${c?.file?.filename}` },
         undefined
       )
     );
@@ -348,7 +354,7 @@ invoiceRouter.post("/invoice-pdf-file", (c, w) => {
 // vehical issure
 invoiceRouter.post("/vehical-issure", (c, w) => {
   upload.single("vehical-issure")(c, w, (err) => {
-    if (err)
+    if (err) {
       w.status(HTTPSTATUS.SERVER_ERROR).json(
         clientResponse(
           RESPONSE.ERROR,
@@ -357,11 +363,13 @@ invoiceRouter.post("/vehical-issure", (c, w) => {
           HTTPSTATUS_MSG.SERVER_ERROR
         )
       );
+      return;
+    }
     w.status(HTTPSTATUS.CREATED).json(
       clientResponse(
         RESPONSE.SUCCESS,
         HTTPSTATUS.CREATED,
-        { file: `/data/${c.file.filename}` },
+        { file: `/data/${c?.file?.filename}` },
         undefined
       )
     );
