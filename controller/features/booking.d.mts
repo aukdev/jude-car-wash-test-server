@@ -1,0 +1,12 @@
+export declare const getAllMonthly: (page: any, size: any) => Promise<any>;
+export declare const getAllByDate: (date: any, page: any, size: any) => Promise<any>;
+export declare const getForCustomer: (clientId: any) => Promise<any>;
+export declare const getById: (id: any) => Promise<any>;
+export declare const getByMultiBookingId: (multiBookingId: any) => Promise<any>;
+export declare const getJobs: (date: any, team: number[]) => Promise<any>;
+export declare const availableTimesTeam: () => Promise<string[]>;
+export declare const availableTimesCustomers: () => Promise<string[]>;
+export declare const create: (data: any) => Promise<string>;
+export declare const update: (id: any, data: any) => Promise<string>;
+export declare const deleteData: (id: any) => Promise<string>;
+//# sourceMappingURL=booking.d.mts.map

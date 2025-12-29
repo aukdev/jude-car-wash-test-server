@@ -1,0 +1,9 @@
+export declare const getAllTeams: () => Promise<any>;
+export declare const getAllTeamsByDateWithBookings: (date: any) => Promise<any>;
+export declare const getTeam: (id: any) => Promise<any>;
+export declare const createTeam: (data: any) => Promise<any>;
+export declare const update: (id: any, data: any) => Promise<any>;
+export declare const deleteTeam: (id: any) => Promise<string>;
+export declare const addMembers: (id: any, data?: any[]) => Promise<string>;
+export declare const deleteMembers: (id: any, data?: any[]) => Promise<string>;
+//# sourceMappingURL=team.d.mts.map

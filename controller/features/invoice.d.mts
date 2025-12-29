@@ -1,0 +1,13 @@
+export declare const getAllMonthly: (page: any, size: any) => Promise<any>;
+export declare const getAllByDate: (date: any, page: any, size: any) => Promise<any>;
+export declare const getById: (id: any) => Promise<any>;
+export declare const getByMultiBookingId: (multiBookingId: any) => Promise<any>;
+export declare const checkInvoiceNumber: (invoiceId: any) => Promise<string>;
+export declare const create: (data: any) => Promise<any>;
+export declare const startingInvoiceCreate: (data: any) => Promise<string>;
+export declare const update: (id: any, data: any) => Promise<string>;
+export declare const mainPDFCreate: (data: any) => Promise<any>;
+export declare const mainPDFUpdate: (data: any) => Promise<any>;
+export declare const completeJob: (id: any) => Promise<string>;
+export declare const invoiceGen: (id: any) => Promise<any>;
+//# sourceMappingURL=invoice.d.mts.map

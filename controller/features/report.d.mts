@@ -1,0 +1,12 @@
+export declare const getAllMonthly: (page: any, size: any) => Promise<any>;
+export declare const getAllCalcMonthly: () => Promise<any>;
+export declare const getPOSMonthly: (page: any, size: any) => Promise<any>;
+export declare const getPOSCalcMonthly: () => Promise<any>;
+export declare const getCashMonthly: (page: any, size: any) => Promise<any>;
+export declare const getCashCalcMonthly: () => Promise<any>;
+export declare const getBankTransferMonthly: (page: any, size: any) => Promise<any>;
+export declare const getBankTransferCalcMonthly: () => Promise<any>;
+export declare const getJobsMonthly: (team: number[]) => Promise<any>;
+export declare const getMonthlyBookingForCustomer: (clientId: any) => Promise<any>;
+export declare const getAllCancelBookingMonthly: (page: any, size: any) => Promise<any>;
+//# sourceMappingURL=report.d.mts.map

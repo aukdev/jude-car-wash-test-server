@@ -1,0 +1,10 @@
+export declare const getAllCustomers: (page: any, size: any) => Promise<any>;
+export declare const getAllStaff: (page: any, size: any) => Promise<any>;
+export declare const getById: (id: any) => Promise<any>;
+export declare const create: (data: any) => Promise<string>;
+export declare const searchByPhone: (phone: any) => Promise<any>;
+export declare const checkUsername: (username: any) => Promise<string>;
+export declare const checkPhone: (phone: any) => Promise<string>;
+export declare const update: (id: any, data: any) => Promise<string>;
+export declare const deleteClient: (id: any) => Promise<string>;
+//# sourceMappingURL=client.d.mts.map

@@ -1,0 +1,9 @@
+export declare const getAll: () => Promise<any>;
+export declare const getTypeById: (id: any) => Promise<any>;
+export declare const createType: (data: any) => Promise<any>;
+export declare const updateType: (id: any, data: any) => Promise<any>;
+export declare const deleteType: (id: any) => Promise<any>;
+export declare const createService: (data: any) => Promise<any>;
+export declare const updateService: (id: any, data: any) => Promise<any>;
+export declare const deleteService: (id: any) => Promise<any>;
+//# sourceMappingURL=service.d.mts.map
